@@ -54,6 +54,7 @@ import androidx.compose.ui.Alignment
 import android.content.res.Configuration
 import android.widget.Button
 import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.material3.ButtonColors
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -97,13 +98,13 @@ fun MyScreen(
                 .padding(start = 16.dp,
                     top = 16.dp,
                     end = 16.dp,
-                    bottom = 80.dp,),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+                    bottom = 120.dp,),
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            itemsIndexed(squares.value) { index, number ->
+            items(squares.value) { number ->
+                val index = number - 1
                 val backgroundColor = if (index % 2 == 0) Color.Red else Color.Blue
-
                 Box(
                     modifier = Modifier
                         .aspectRatio(1f)
@@ -111,7 +112,7 @@ fun MyScreen(
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = "Box $number",
+                        text = "Box №$number",
                         color = Color.White
                     )
                 }
@@ -127,6 +128,8 @@ fun MyScreen(
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .padding(all = 16.dp)
+                .size(90.dp)
+                .clip(CircleShape)
         ) {
             Text(text = "+")
         }
