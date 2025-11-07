@@ -102,8 +102,7 @@ fun MyScreen(
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            items(squares.value) { number ->
-                val index = number - 1
+            items(squares.value) { index ->
                 val backgroundColor = if (index % 2 == 0) Color.Red else Color.Blue
                 Box(
                     modifier = Modifier
@@ -112,7 +111,7 @@ fun MyScreen(
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = "Box №$number",
+                        text = "Box №$index",
                         color = Color.White
                     )
                 }
@@ -122,14 +121,14 @@ fun MyScreen(
         Button(
             onClick = {
                 val newSquares = squares.value.toMutableList()
-                newSquares.add(newSquares.size + 1)
+                newSquares.add(newSquares.size)
                 squares.value = newSquares
             },
             modifier = Modifier
-                .align(Alignment.BottomEnd)
-                .padding(all = 16.dp)
                 .size(90.dp)
-                .clip(CircleShape)
+                .align(Alignment.BottomEnd)
+                .padding(16.dp),
+            shape = RoundedCornerShape(12.dp)
         ) {
             Text(text = "+")
         }
