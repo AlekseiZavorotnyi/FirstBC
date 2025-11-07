@@ -102,8 +102,10 @@ fun MyScreen(
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            items(squares.value) { index ->
-                val backgroundColor = if (index % 2 == 0) Color.Red else Color.Blue
+            items(squares.value,
+                key = { number -> number }
+            ) { number ->
+                val backgroundColor = if (number % 2 == 0) Color.Red else Color.Blue
                 Box(
                     modifier = Modifier
                         .aspectRatio(1f)
@@ -111,7 +113,7 @@ fun MyScreen(
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = "Box №$index",
+                        text = "Box №$number",
                         color = Color.White
                     )
                 }
